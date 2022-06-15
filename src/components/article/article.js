@@ -1,3 +1,4 @@
+
 import './article.less'
 // This is the data we will be using to create our articles. Look at it, then proceed to line 93.
 // OPTIONAL: if you're feeling adventurous, try to make this data an export from a different module, and import it here.
@@ -115,3 +116,48 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+// const article = document.querySelector()
+
+function articleMaker (articleObj){
+  const divElement = document.createElement('div')
+  const h2Title= document.createElement('h2')
+  const dateParag = document.createElement('p')
+  const firstP = document.createElement('p')
+  const secondP = document.createElement('p')
+  const thirdP = document.createElement('p')
+  const spanElem = document.createElement('span')
+ 
+// appending elements to divElement
+  divElement.appendChild(h2Title)
+  divElement.appendChild(dateParag)
+  divElement.appendChild(firstP)
+  divElement.appendChild(secondP)
+  divElement.appendChild(thirdP)
+  divElement.appendChild(spanElem)
+
+   // adding classLists
+   divElement.classList.add('article')
+   spanElem.classList.add('expandButton')
+   dateParag.classList.add('date')
+
+  // addEventListener to spanElem
+  spanElem.addEventListener('click', e =>{
+    divElement.classList.toggle('article-open')
+  })
+  // setting text content to elements
+  h2Title.textContent = articleObj.title
+  dateParag.textContent = articleObj.date
+  firstP.textContent = articleObj.firstParagraph
+  secondP.textContent = articleObj.secondParagraph
+  thirdP.textContent = articleObj.thirdParagraph
+  spanElem.textContent = '+'
+
+  //  return
+  return divElement
+}
+
+data.forEach(obj => {
+  let dataComp = articleMaker(obj)
+  const aP = document.querySelector('.articles')
+  aP.appendChild(dataComp)
+});
